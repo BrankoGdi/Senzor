@@ -1,0 +1,36 @@
+<apx-chart
+  [series]="series"
+  [chart]="chart"
+  [dataLabels]="dataLabels"
+  [markers]="markers"
+  [title]="title"
+  [fill]="fill"
+  [yaxis]="yaxis"
+  [xaxis]="xaxis"
+  [tooltip]="tooltip"
+  [autoUpdateSeries]="true"
+></apx-chart>
+
+<div *ngFor="let senzor of senzors">
+  Senzor: {{ senzor.label }}
+  <input type="checkbox" [(ngModel)]="senzor.selected" (click)="getNewData()" />
+</div>
+
+<div>
+  From:
+  <input type="datetime-local" [(ngModel)]="fromDate" (change)="getNewData()" />
+  <input type="datetime-local" [(ngModel)]="toDate" (change)="getNewData()" />
+</div>
+
+<div>
+  Period
+  <select [(ngModel)]="selectedPeriod" (change)="getNewData()">
+    <option *ngFor="let period of periods" [ngValue]="period.value">
+      {{ period.key }}
+    </option>
+  </select>
+</div>
+
+<!-- {{periods | json}} -->
+
+<!-- {{senzors | json}} -->
